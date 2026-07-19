@@ -35,7 +35,19 @@ export default function LiveTicker() {
       </div>
       <div className="ticker-viewport">
         {trades.length === 0 ? (
-          <div className="ticker-empty">waiting for trades…</div>
+          // pre-launch: no live feed yet — scroll a placeholder, no fake trades
+          <div className="ticker-track">
+            {Array.from({ length: 6 }, (_, i) => (
+              <span key={i} className="ticker-item ticker-idle">
+                LIVE TRADES ACTIVATE AT LAUNCH
+                <span className="ticker-sep">◆</span> $TBILL
+                <span className="ticker-sep">◆</span> ROBINHOOD CHAIN
+                <span className="ticker-sep">◆</span> PONS
+                <span className="ticker-sep">◆</span> 🤑
+                <span className="ticker-sep">◆</span>
+              </span>
+            ))}
+          </div>
         ) : (
           // duplicated track for a seamless infinite scroll
           <div className="ticker-track">

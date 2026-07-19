@@ -529,12 +529,9 @@ body {
   color: #444;
   margin-left: 8px;
 }
-.ticker-empty {
-  display: flex;
-  align-items: center;
-  height: 100%;
-  padding: 0 14px;
-  color: #777;
+.ticker-idle {
+  color: #e8c15a;
+  letter-spacing: 0.5px;
 }
 
 /* ---------- Screen shake (BUY) ---------- */
