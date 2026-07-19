@@ -1,0 +1,665 @@
+/* ============================================================
+   $TBILL — TokenizedRWASigmawojak69Hood
+   98.css supplies the chrome. This file supplies the chaos.
+   ============================================================ */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+body {
+  /* Plain Windows 98 desktop teal. */
+  background: #008080;
+  /* classic pixel arrow cursor (hotspot at the tip, 0 0) */
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='24' viewBox='0 0 16 24' shape-rendering='crispEdges'><path d='M0 0 L0 17 L4 13 L7 20 L9 19 L6 12 L11 12 Z' fill='white' stroke='black' stroke-width='1'/></svg>")
+      0 0,
+    auto;
+  overflow-x: hidden;
+  /* room for the fixed top ticker + bottom taskbar */
+  padding-top: 30px;
+  padding-bottom: 42px;
+}
+
+/* ---------- Desktop surface + mascot wallpaper ---------- */
+
+.desktop {
+  position: relative;
+  /* tall enough to hold the bottom-most window (the game); scrolls on
+     short viewports, since the taskbar is fixed to the viewport. */
+  min-height: max(calc(100vh - 42px), 980px);
+  width: 100%;
+  padding: 12px;
+}
+
+/* ---------- Spinning 3D WordArt hero ---------- */
+
+.wordart-stage {
+  position: fixed;
+  inset: 0;
+  z-index: 1; /* above the teal desktop, below any window (z >= 10) */
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  perspective: 1100px;
+  overflow: hidden;
+}
+.wordart {
+  position: relative;
+  transform-style: preserve-3d;
+  animation: wa-spin 10s linear infinite;
+  font-family: Impact, "Arial Black", "Arial Narrow Bold", sans-serif;
+  font-style: italic;
+  font-weight: 900;
+  font-size: clamp(56px, 15vw, 190px);
+  line-height: 1;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+.wa-face,
+.wa-layer {
+  display: block;
+  margin: 0;
+}
+.wa-face {
+  position: relative;
+  background: linear-gradient(
+    180deg,
+    #fff6c0 0%,
+    #ffe066 22%,
+    #ff9d00 62%,
+    #e63b12 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-stroke: 1.5px #7a3300;
+}
+.wa-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+@keyframes wa-spin {
+  from {
+    transform: rotateX(-6deg) rotateY(0deg);
+  }
+  to {
+    transform: rotateX(-6deg) rotateY(360deg);
+  }
+}
+.wordart-tag {
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.55);
+}
+
+/* ---------- Window layout ---------- */
+
+.win {
+  position: absolute;
+  z-index: 10;
+}
+
+.window-body {
+  /* a little breathing room over 98.css defaults */
+  line-height: 1.4;
+}
+
+/* Marketing / lore copy: unhinged fonts against the retro chrome.
+   THIS CONTRAST IS THE JOKE. */
+.lore-font {
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+
+.impact {
+  font-family: Impact, "Arial Narrow Bold", sans-serif;
+  letter-spacing: 0.5px;
+}
+
+/* ---------- Window 1: wordmark + BUY button ---------- */
+
+.wordmark {
+  font-family: Impact, "Arial Narrow Bold", sans-serif;
+  font-size: clamp(48px, 12vw, 104px);
+  line-height: 0.9;
+  color: #000080;
+  text-shadow: 3px 3px 0 #c0c0c0, 6px 6px 0 #3c8f3f;
+  margin: 6px 0 2px;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.tagline {
+  font-family: Impact, "Arial Narrow Bold", sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: clamp(13px, 2.4vw, 20px);
+  color: #b30000;
+  margin: 4px 8px 12px;
+  line-height: 1.15;
+}
+
+/* publisher-clipart-gold giant BUY button */
+.buy-btn {
+  display: block;
+  width: 100%;
+  background: #ffd700 !important;
+  color: #000 !important;
+  border: 3px solid #000 !important;
+  border-radius: 0 !important;
+  box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.55) !important;
+  font-family: Impact, "Arial Narrow Bold", sans-serif;
+  font-size: clamp(16px, 3vw, 26px);
+  letter-spacing: 1px;
+  padding: 14px 10px !important;
+  cursor: pointer;
+  min-height: unset;
+  text-shadow: 1px 1px 0 #fff6a8;
+  animation: buy-wobble 1.2s ease-in-out infinite;
+}
+.buy-btn:active {
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.55) !important;
+  transform: translate(3px, 3px);
+  animation: none;
+}
+@keyframes buy-wobble {
+  0%, 100% { transform: rotate(-1deg) scale(1); }
+  50% { transform: rotate(1deg) scale(1.02); }
+}
+
+/* not-financial-advice disclaimer under the button */
+.nfa {
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  font-size: 11px;
+  line-height: 1.35;
+  color: #333;
+  background: #ffffcc;
+  border: 1px solid #999;
+  padding: 6px 8px;
+  margin: 10px 0 0;
+  text-align: center;
+}
+
+/* period-accurate marquee */
+.win marquee {
+  border: 2px inset #fff;
+  background: #000080;
+  color: #00ff00;
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+  padding: 4px 0;
+  margin-top: 12px;
+}
+
+/* ---------- Window 2: brainrot counter ---------- */
+
+.odometer {
+  font-family: "Courier New", monospace;
+  font-size: 26px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  color: #00ff00;
+  background: #000;
+  padding: 8px 10px;
+  text-align: center;
+  display: block;
+}
+
+/* ---------- Window 3: notepad lore ---------- */
+
+.notepad textarea {
+  width: 100%;
+  height: 320px;
+  resize: none;
+  font-family: "Courier New", monospace;
+  font-size: 12px;
+  line-height: 1.35;
+  background: #fff;
+  color: #000;
+  border: 2px inset #fff;
+  white-space: pre;
+  overflow: auto;
+  padding: 6px;
+}
+
+/* ---------- Window 4: portfolio widget ---------- */
+
+.big-green {
+  font-family: Impact, sans-serif;
+  font-size: 46px;
+  color: #008000;
+  text-align: center;
+  margin: 4px 0;
+  text-shadow: 1px 1px 0 #b6ffb6;
+}
+
+.sparkline-wrap {
+  background: #000;
+  border: 2px inset #fff;
+  padding: 4px;
+}
+.sparkline-wrap canvas {
+  display: block;
+  width: 100%;
+  height: 90px;
+}
+
+.disclaimer {
+  font-size: 10px;
+  color: #555;
+  text-align: center;
+  margin-top: 6px;
+  font-style: italic;
+}
+
+/* ---------- Window 5: socials icon grid ---------- */
+
+.social-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.social-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 4px;
+  border: 2px outset #dfdfdf;
+  background: silver;
+  text-decoration: none;
+  color: #000;
+  font-size: 11px;
+  text-align: center;
+  cursor: pointer;
+}
+.social-cell:active {
+  border-style: inset;
+}
+.social-icon {
+  font-size: 30px;
+  line-height: 1;
+}
+
+/* ---------- Window 6: as seen on ---------- */
+
+.asseen-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+.asseen-chip {
+  filter: grayscale(1) contrast(1.1);
+  padding: 6px 10px;
+  border: 2px inset #dfdfdf;
+  background: #cfcfcf;
+  font-family: "Times New Roman", serif;
+  font-weight: bold;
+  font-size: 12px;
+  text-align: center;
+  max-width: 150px;
+}
+
+/* ---------- Desktop icons (left column) ---------- */
+
+.desktop-icons {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  width: 92px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 5;
+}
+.desktop-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 92px;
+  min-height: unset;
+  background: none;
+  border: 1px dotted transparent;
+  box-shadow: none;
+  cursor: pointer;
+  color: #fff;
+  font-size: 11px;
+  line-height: 1.1;
+  text-align: center;
+  padding: 4px 2px;
+}
+.desktop-icon:hover {
+  border: 1px dotted #ffffff;
+  background: rgba(0, 0, 128, 0.25);
+}
+.desktop-icon:active {
+  border-style: dotted;
+  box-shadow: none;
+}
+.desktop-icon-glyph {
+  font-size: 32px;
+  line-height: 1;
+  filter: drop-shadow(1px 1px 0 rgba(0, 0, 0, 0.6));
+}
+.desktop-icon-label {
+  text-shadow: 1px 1px 0 #000, -1px 0 0 #000;
+  word-break: break-word;
+}
+
+/* ---------- Bouncing DVD-style $TBILL coin ---------- */
+
+.bouncing-coin {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 8;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 28%, #fff2a8, #ffd700 55%, #b8860b);
+  border: 3px solid #7a5c00;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Impact, sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  color: #7a5c00;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.4) inset;
+  pointer-events: none;
+  will-change: transform;
+}
+
+
+/* ---------- WHACK-A-JEET game ---------- */
+
+.whack-hud {
+  display: flex;
+  justify-content: space-between;
+  gap: 6px;
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+  font-size: 12px;
+  background: #000;
+  color: #00ff00;
+  border: 2px inset #fff;
+  padding: 5px 8px;
+}
+.whack-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin: 8px 0;
+}
+.whack-cell {
+  height: 66px;
+  font-size: 32px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+}
+.whack-cell:disabled {
+  cursor: default;
+}
+.whack-legend {
+  text-align: center;
+  font-size: 11px;
+  margin: 4px 0 8px;
+}
+.whack-footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.whack-footer button {
+  white-space: nowrap;
+}
+.whack-msg {
+  font-size: 11px;
+  line-height: 1.2;
+}
+
+/* ---------- Live trades TOP TICKER ---------- */
+
+.ticker {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 30px;
+  z-index: 9998;
+  display: flex;
+  align-items: stretch;
+  background: #000;
+  border-bottom: 2px solid #2a2a2a;
+  font-family: "Courier New", monospace;
+  font-size: 13px;
+  overflow: hidden;
+}
+.ticker-badge {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 12px;
+  background: #c00000;
+  color: #fff;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  animation: ticker-flash 1s steps(1, end) infinite;
+  z-index: 1;
+}
+@keyframes ticker-flash {
+  50% {
+    background: #6e0000;
+  }
+}
+.ticker-viewport {
+  flex: 1 1 auto;
+  position: relative;
+  overflow: hidden;
+}
+.ticker-track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  animation: ticker-scroll 40s linear infinite;
+  will-change: transform;
+}
+@keyframes ticker-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0 4px 0 14px;
+  font-weight: bold;
+}
+.ticker-item.buy {
+  color: #39ff14;
+}
+.ticker-item.sell {
+  color: #ff4d4d;
+}
+.ticker-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.ticker-item.buy .ticker-dot {
+  background: #39ff14;
+  box-shadow: 0 0 4px #39ff14;
+}
+.ticker-item.sell .ticker-dot {
+  background: #ff4d4d;
+  box-shadow: 0 0 4px #ff4d4d;
+}
+.ticker-tokens {
+  color: #888;
+  font-weight: normal;
+}
+.ticker-sep {
+  color: #444;
+  margin-left: 8px;
+}
+.ticker-empty {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 14px;
+  color: #777;
+}
+
+/* ---------- Screen shake (BUY) ---------- */
+
+.desktop.shake {
+  animation: screen-shake 0.45s ease-in-out;
+}
+@keyframes screen-shake {
+  0%, 100% { transform: translate(0, 0); }
+  20% { transform: translate(-6px, 4px); }
+  40% { transform: translate(6px, -4px); }
+  60% { transform: translate(-5px, -3px); }
+  80% { transform: translate(5px, 3px); }
+}
+
+/* ---------- Fake Windows 98 taskbar ---------- */
+
+.taskbar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 40px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 6px;
+  background: silver;
+  border-top: 2px solid #fff;
+  box-shadow: inset 0 1px 0 #dfdfdf;
+}
+
+.start-btn {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px 3px 6px !important;
+  min-width: 74px;
+}
+.start-logo {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border-radius: 3px;
+  background: radial-gradient(circle at 30% 30%, #6fd47a, #3c8f3f);
+  position: relative;
+}
+.start-logo::after {
+  content: "🤑";
+  position: absolute;
+  inset: 0;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.taskbar-spacer {
+  flex: 1;
+}
+
+.taskbar-tab {
+  font-size: 11px;
+  padding: 3px 8px !important;
+  max-width: 220px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.clock {
+  border: 2px inset #fff;
+  background: silver;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-family: "Courier New", monospace;
+  min-width: 78px;
+  text-align: center;
+}
+
+.start-menu {
+  position: fixed;
+  bottom: 40px;
+  left: 6px;
+  z-index: 10000;
+  width: 240px;
+}
+.start-menu .menu-item {
+  padding: 8px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+.start-menu .menu-item:hover {
+  background: #000080;
+  color: #fff;
+}
+
+/* ---------- Fake Windows balloon toast ---------- */
+
+.toast {
+  position: fixed;
+  bottom: 52px;
+  right: 12px;
+  z-index: 10001;
+  width: 220px;
+  animation: toast-in 0.15s ease-out;
+}
+@keyframes toast-in {
+  from { transform: translateY(10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* ---------- Mobile: stack windows vertically ---------- */
+
+@media (max-width: 760px) {
+  .desktop {
+    padding: 8px;
+  }
+  .win {
+    position: static !important;
+    transform: none !important;
+    width: auto !important;
+    margin: 0 0 14px 0 !important;
+  }
+}
